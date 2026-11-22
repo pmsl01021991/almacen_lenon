@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA ESTRUCTURAS | Registro diario</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/registro-diario.css">
+    <script src="js/registro-diario.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- MENÚ LATERAL -->
+    <aside class="sidebar">
+
+        <div class="logo-container">
+            <img src="assets/Logo_Mega_Estructuras.png" alt="MEGA ESTRUCTURAS">
+        </div>
+
+        <div class="menu-title">MENÚ PRINCIPAL</div>
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="inventario.html" class="menu-item">
+                <span>▤</span> Inventario
+            </a>
+
+            <a href="entrada.html" class="menu-item">
+                <span>＋</span> Registrar entrada
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>−</span> Registrar salida
+            </a>
+
+            <a href="registro-diario.html" class="menu-item active">
+                <span>☷</span> Registro diario
+            </a>
+
+            <a href="resumen.html" class="menu-item">
+                <span>▥</span> Reportes
+            </a>
+
+            <a href="movimientos.html" class="menu-item">
+                <span>▥</span>
+                Movimientos
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            Sistema de gestión de almacén
+            <small>MEGA ESTRUCTURAS</small>
+        </div>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <span class="company-name">MEGA ESTRUCTURAS</span>
+                <h1>Registro diario</h1>
+            </div>
+
+            <div class="user-info">
+                <span class="user-indicator"></span>
+                Almacén
+            </div>
+        </header>
+
+        <!-- PRESENTACIÓN -->
+        <section class="daily-header">
+            <div>
+                <h2>Control de visitas, recojos y entregas</h2>
+                <p>
+                    Consulta y registra las actividades diarias
+                    realizadas en el almacén.
+                </p>
+            </div>
+
+            <button type="button" class="btn-primary" id="btnNuevoRegistro">
+                ＋ Nuevo registro
+            </button>
+        </section>
+
+        <!-- INDICADORES -->
+        <section class="daily-stats">
+
+            <article class="daily-stat">
+                <span>Total de registros</span>
+                <h2 id="totalRegistros">0</h2>
+                <small>Registros disponibles</small>
+            </article>
+
+            <article class="daily-stat">
+                <span>Fecha inicial</span>
+                <h2 id="fechaInicial">—</h2>
+                <small>Primer registro</small>
+            </article>
+
+            <article class="daily-stat">
+                <span>Fecha final</span>
+                <h2 id="fechaFinal">—</h2>
+                <small>Último registro</small>
+            </article>
+
+        </section>
+
+        <!-- FILTROS -->
+        <section class="daily-filters">
+
+            <div class="filter-field search-field">
+                <label for="buscarRegistro">Buscar registro</label>
+                <input
+                    type="search"
+                    id="buscarRegistro"
+                    placeholder="Persona, empresa o detalle..."
+                >
+            </div>
+
+            <div class="filter-field">
+                <label for="filtrarFecha">Fecha</label>
+                <input type="date" id="filtrarFecha">
+            </div>
+
+            <div class="filter-field">
+                <label for="filtrarTipo">Tipo de movimiento</label>
+                <select id="filtrarTipo">
+                    <option value="">Todos los movimientos</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn-secondary" id="btnLimpiarFiltros">
+                Limpiar filtros
+            </button>
+
+        </section>
+
+        <!-- TABLA -->
+        <section class="daily-table-section">
+
+            <div class="daily-table-heading">
+                <div>
+                    <h3>Historial de actividades</h3>
+                    <p>Información registrada en el control diario.</p>
+                </div>
+
+                <span id="registrosVisibles">0 registros</span>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="daily-table">
+
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Día</th>
+                            <th>Hora</th>
+                            <th>Tipo de movimiento</th>
+                            <th>Persona / Empresa</th>
+                            <th>Detalle del registro</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaRegistros"></tbody>
+
+                </table>
+
+            </div>
+
+            <div class="daily-footer">
+                <span>Registro diario de MEGA ESTRUCTURAS</span>
+                <span id="estadoTabla">Datos cargados</span>
+            </div>
+
+        </section>
+
+        <footer class="main-footer">
+            © 2026 MEGA ESTRUCTURAS - Sistema de gestión de almacén
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- VENTANA PARA NUEVO REGISTRO -->
+<div class="modal-overlay" id="modalRegistro">
+
+    <div class="modal-content">
+
+        <div class="modal-heading">
+            <div>
+                <h2>Nuevo registro</h2>
+                <p>Completa los datos de la actividad.</p>
+            </div>
+
+            <button type="button" id="btnCerrarModal" class="modal-close">
+                ×
+            </button>
+        </div>
+
+        <form id="formRegistro">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="nuevaFecha">Fecha *</label>
+                    <input type="date" id="nuevaFecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nuevaHora">Hora</label>
+                    <input type="time" id="nuevaHora">
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="nuevoTipo">Tipo de movimiento *</label>
+                    <input
+                        type="text"
+                        id="nuevoTipo"
+                        list="tiposMovimiento"
+                        placeholder="Ej. Visita / servicio"
+                        required
+                    >
+
+                    <datalist id="tiposMovimiento"></datalist>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="nuevaPersona">Persona / Empresa</label>
+                    <input
+                        type="text"
+                        id="nuevaPersona"
+                        placeholder="Nombre de la persona o empresa"
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="nuevoDetalle">Detalle del registro *</label>
+                    <textarea
+                        id="nuevoDetalle"
+                        rows="4"
+                        placeholder="Describe la actividad realizada..."
+                        required
+                    ></textarea>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button" class="btn-secondary" id="btnCancelar">
+                    Cancelar
+                </button>
+
+                <button type="submit" class="btn-primary">
+                    Guardar registro
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MEGA ESTRUCTURAS | Inventario</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/inventario.css">
+    <script src="js/inventario.js" defer></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- MENÚ LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo-container">
+                <img src="assets/Logo_Mega_Estructuras.png"
+                     alt="MEGA ESTRUCTURAS">
+            </div>
+
+            <div class="menu-title">MENÚ PRINCIPAL</div>
+
+            <nav class="menu">
+
+                <a href="index.html" class="menu-item">
+                    <span>▦</span>
+                    Dashboard
+                </a>
+
+                <a href="inventario.html" class="menu-item active">
+                    <span>▤</span>
+                    Inventario
+                </a>
+
+                <a href="entrada.html" class="menu-item">
+                    <span>＋</span>
+                    Registrar entrada
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span>−</span>
+                    Registrar salida
+                </a>
+
+                <a href="registro-diario.html" class="menu-item">
+                    <span>☷</span>
+                    Registro diario
+                </a>
+
+                <a href="resumen.html" class="menu-item">
+                    <span>▥</span>
+                    Reportes
+                </a>
+
+                <a href="movimientos.html" class="menu-item">
+                    <span>▥</span>
+                    Movimientos
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                Sistema de gestión de almacén
+                <small>MEGA ESTRUCTURAS</small>
+            </div>
+
+        </aside>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+            <!-- ENCABEZADO -->
+            <header class="topbar">
+
+                <div>
+                    <span class="company-name">MEGA ESTRUCTURAS</span>
+                    <h1>Inventario</h1>
+                </div>
+
+                <div class="user-info">
+                    <span class="user-indicator"></span>
+                    Almacén
+                </div>
+
+            </header>
+
+            <!-- PRESENTACIÓN -->
+            <section class="inventory-header">
+
+                <div>
+                    <h2>Inventario de materiales</h2>
+
+                    <p>
+                        Consulta, registra y administra los materiales
+                        disponibles en el almacén.
+                    </p>
+                </div>
+
+                <button class="btn-primary" id="btnNuevoMaterial">
+                    ＋ Nuevo material
+                </button>
+
+            </section>
+
+            <!-- INDICADORES -->
+            <section class="inventory-stats">
+
+                <article class="inventory-stat">
+                    <span>Materiales registrados</span>
+                    <h2 id="totalMateriales">--</h2>
+                    <small>Registros del catálogo</small>
+                </article>
+
+                <article class="inventory-stat">
+                    <span>Existencias confirmadas</span>
+                    <h2 id="materialesConfirmados">--</h2>
+                    <small>Conteo validado</small>
+                </article>
+
+                <article class="inventory-stat">
+                    <span>Pendientes de confirmar</span>
+                    <h2 id="materialesPendientes">--</h2>
+                    <small>Requieren conteo físico</small>
+                </article>
+
+            </section>
+
+            <!-- FILTROS -->
+            <section class="inventory-filters">
+
+                <div class="search-box">
+                    <label for="buscarMaterial">Buscar material</label>
+
+                    <input
+                        type="search"
+                        id="buscarMaterial"
+                        placeholder="Buscar por código o descripción..."
+                    >
+                </div>
+
+                <div>
+                    <label for="filtrarCategoria">Categoría</label>
+
+                    <select id="filtrarCategoria">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="filtrarEstado">Estado</label>
+
+                    <select id="filtrarEstado">
+                        <option value="">Todos los estados</option>
+                        <option value="Confirmado">Confirmado</option>
+                        <option value="Por confirmar">Por confirmar</option>
+                        <option value="Mixto">Mixto</option>
+                    </select>
+                </div>
+
+            </section>
+
+            <!-- TABLA DE INVENTARIO -->
+            <section class="inventory-table-section">
+
+                <div class="table-heading">
+
+                    <div>
+                        <h3>Listado de materiales</h3>
+
+                        <p>
+                            Información registrada en el inventario.
+                        </p>
+                    </div>
+
+                    <button class="btn-secondary" id="btnActualizar">
+                        ↻ Actualizar
+                    </button>
+
+                </div>
+
+                <div class="table-responsive">
+
+                    <table class="inventory-table">
+
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Categoría</th>
+                                <th>Material / descripción</th>
+                                <th>Cantidad anotada</th>
+                                <th>Unidad / presentación</th>
+                                <th>Stock actual</th>
+                                <th>Estado / validación</th>
+                                <th>Observaciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tablaInventario">
+
+                            <tr>
+                                <td>LIJ-001</td>
+                                <td>Abrasivos</td>
+                                <td>Lija grano 40</td>
+                                <td>4</td>
+                                <td>Paquetes</td>
+                                <td>
+                                    <span class="status-confirmed">
+                                        Confirmado
+                                    </span>
+                                </td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>LIJ-002</td>
+                                <td>Abrasivos</td>
+                                <td>Lija grano 80</td>
+                                <td>2</td>
+                                <td>Paquetes</td>
+                                <td>
+                                    <span class="status-confirmed">
+                                        Confirmado
+                                    </span>
+                                </td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>DIS-001</td>
+                                <td>Abrasivos</td>
+                                <td>Disco de corte chico</td>
+                                <td>3</td>
+                                <td>Cajas</td>
+                                <td>
+                                    <span class="status-confirmed">
+                                        Confirmado
+                                    </span>
+                                </td>
+                                <td>—</td>
+                            </tr>
+
+                            <tr>
+                                <td>DIS-002</td>
+                                <td>Abrasivos</td>
+                                <td>Disco pulifón</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>
+                                    <span class="status-pending">
+                                        Por confirmar
+                                    </span>
+                                </td>
+                                <td>En el apunte no figura cantidad.</td>
+                            </tr>
+
+                            <tr>
+                                <td>DIS-003</td>
+                                <td>Abrasivos</td>
+                                <td>Disco de desbaste</td>
+                                <td>—</td>
+                                <td>—</td>
+                                <td>
+                                    <span class="status-pending">
+                                        Por confirmar
+                                    </span>
+                                </td>
+                                <td>En el apunte no figura cantidad.</td>
+                            </tr>
+
+                            <tr>
+                                <td>BRO-002</td>
+                                <td>Perforación</td>
+                                <td>Broca 3/16 pulgada</td>
+                                <td>5 paquetes + 7 unidades</td>
+                                <td>Mixto</td>
+                                <td>
+                                    <span class="status-confirmed">
+                                        Confirmado
+                                    </span>
+                                </td>
+                                <td>Se conserva la cantidad tal como está anotada.</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <div class="table-footer">
+                    <span>Vista inicial de materiales</span>
+                    
+                </div>
+
+            </section>
+
+            <footer class="main-footer">
+                © 2026 MEGA ESTRUCTURAS - Sistema de gestión de almacén
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

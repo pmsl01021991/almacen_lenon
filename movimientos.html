@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEGA ESTRUCTURAS | Flujo de movimientos</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/movimientos.css">
+    <script src="js/movimientos.js" defer></script>
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar">
+
+        <div class="logo-container">
+            <img src="assets/Logo_Mega_Estructuras.png" alt="MEGA ESTRUCTURAS">
+        </div>
+
+        <div class="menu-title">MENÚ PRINCIPAL</div>
+
+        <nav class="menu">
+
+            <a href="index.html" class="menu-item">
+                <span>▦</span> Dashboard
+            </a>
+
+            <a href="inventario.html" class="menu-item">
+                <span>▤</span> Inventario
+            </a>
+
+            <a href="entrada.html" class="menu-item">
+                <span>＋</span> Registrar entrada
+            </a>
+
+            <a href="#" class="menu-item">
+                <span>−</span> Registrar salida
+            </a>
+
+            <a href="registro-diario.html" class="menu-item">
+                <span>☷</span> Registro diario
+            </a>
+
+            <a href="resumen.html" class="menu-item">
+                <span>▥</span> Resumen
+            </a>
+
+            <a href="movimientos.html" class="menu-item active">
+                <span>▥</span>
+                Movimientos
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            Sistema de gestión de almacén
+            <small>MEGA ESTRUCTURAS</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <span class="company-name">MEGA ESTRUCTURAS</span>
+                <h1>Flujo de movimientos</h1>
+            </div>
+
+            <div class="user-info">
+                <span class="user-indicator"></span>
+                Almacén
+            </div>
+        </header>
+
+        <!-- PRESENTACIÓN -->
+        <section class="flow-header">
+            <div>
+                <span>CONTROL DE ACTIVIDADES</span>
+                <h2>Flujo de movimientos diarios</h2>
+                <p>
+                    Visualiza la cantidad de registros realizados
+                    durante cada día del mes.
+                </p>
+            </div>
+        </section>
+
+        <!-- SELECTOR DE MES -->
+        <section class="flow-filter">
+
+            <div>
+                <h3>Mes a consultar</h3>
+                <p>Selecciona el mes que deseas revisar.</p>
+            </div>
+
+            <div class="month-selector">
+                <label for="mesConsultar">MES A CONSULTAR</label>
+                <input type="month" id="mesConsultar" value="2026-11">
+            </div>
+
+        </section>
+
+        <!-- INDICADORES -->
+        <section class="flow-stats">
+
+            <article class="flow-stat">
+                <span>Total de movimientos</span>
+                <h2 id="totalMovimientos">0</h2>
+                <small>Durante el mes seleccionado</small>
+            </article>
+
+            <article class="flow-stat">
+                <span>Días con actividad</span>
+                <h2 id="diasActividad">0</h2>
+                <small>Días con registros</small>
+            </article>
+
+            <article class="flow-stat">
+                <span>Mayor actividad diaria</span>
+                <h2 id="maximoDiario">0</h2>
+                <small id="fechaMaxima">Sin registros</small>
+            </article>
+
+        </section>
+
+        <!-- GRÁFICO -->
+        <section class="flow-chart-section">
+
+            <div class="flow-section-heading">
+                <div>
+                    <h3>Cantidad de movimientos por día</h3>
+                    <p id="tituloGrafico">Movimientos del mes seleccionado</p>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="graficoMovimientos"
+                        role="img"
+                        aria-label="Gráfico de barras de movimientos diarios">
+                </canvas>
+            </div>
+
+            <div class="chart-legend">
+                <span class="legend-color"></span>
+                Cantidad de movimientos
+            </div>
+
+        </section>
+
+        <!-- TABLA -->
+        <section class="flow-table-section">
+
+            <div class="flow-section-heading">
+                <div>
+                    <h3>Detalle de movimientos</h3>
+                    <p>Registros contabilizados por fecha.</p>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="flow-table">
+
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Día</th>
+                            <th>Cantidad de movimientos</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tablaFlujo"></tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">TOTAL DEL MES</td>
+                            <td id="totalTablaFlujo">0</td>
+                        </tr>
+                    </tfoot>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <footer class="main-footer">
+            © 2026 MEGA ESTRUCTURAS - Sistema de gestión de almacén
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>

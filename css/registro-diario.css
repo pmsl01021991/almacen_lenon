@@ -1,0 +1,322 @@
+
+/* ==========================================
+   MEGA ESTRUCTURAS - REGISTRO DIARIO
+========================================== */
+
+.daily-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(120deg, #202020, #303030);
+    color: white;
+    padding: 28px 35px;
+    border-radius: 14px;
+    margin: 30px 0 24px;
+}
+
+.daily-header h2 {
+    font-size: 25px;
+    margin-bottom: 9px;
+}
+
+.daily-header p {
+    color: #ddd;
+    line-height: 1.5;
+}
+
+.daily-header .btn-primary,
+.modal-actions .btn-primary {
+    background: #d71920;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.daily-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.daily-stat {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.daily-stat span {
+    color: #777;
+    font-size: 14px;
+}
+
+.daily-stat h2 {
+    font-size: 27px;
+    margin: 12px 0 6px;
+}
+
+.daily-stat small {
+    color: #999;
+}
+
+.daily-filters {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 22px;
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.filter-field label,
+.form-group label {
+    color: #444;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.filter-field input,
+.filter-field select,
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    background: white;
+}
+
+.filter-field input:focus,
+.filter-field select:focus,
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #d71920;
+}
+
+.btn-secondary {
+    border: 1px solid #ddd;
+    background: #f5f5f5;
+    color: #333;
+    padding: 11px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.daily-table-section {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+}
+
+.daily-table-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.daily-table-heading h3 {
+    font-size: 19px;
+    margin-bottom: 6px;
+}
+
+.daily-table-heading p {
+    color: #888;
+    font-size: 13px;
+}
+
+.daily-table-heading span {
+    color: #b71920;
+    background: #f8eeee;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.daily-table {
+    width: 100%;
+    min-width: 1050px;
+    border-collapse: collapse;
+}
+
+.daily-table th,
+.daily-table td {
+    text-align: left;
+    padding: 13px 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+.daily-table th {
+    background: #f5f5f5;
+    color: #555;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.daily-table td {
+    color: #444;
+}
+
+.daily-table tbody tr:hover {
+    background: #fafafa;
+}
+
+.daily-table td:nth-child(1),
+.daily-table td:nth-child(2),
+.daily-table td:nth-child(3) {
+    white-space: nowrap;
+}
+
+.daily-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #999;
+    font-size: 11px;
+    padding-top: 15px;
+}
+
+/* MODAL */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.55);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+}
+
+.modal-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.modal-heading h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.modal-heading p {
+    font-size: 13px;
+    color: #888;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    cursor: pointer;
+    color: #777;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+    .daily-filters {
+        flex-wrap: wrap;
+    }
+
+    .filter-field {
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 650px) {
+    .daily-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .daily-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+}
